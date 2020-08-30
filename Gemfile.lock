@@ -1,0 +1,41 @@
+PATH
+  remote: .
+  specs:
+    logtastic (0.1.0)
+      concurrent-ruby
+      elasticsearch
+      elasticsearch-xpack
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    byebug (11.1.3)
+    concurrent-ruby (1.1.7)
+    elasticsearch (7.8.1)
+      elasticsearch-api (= 7.8.1)
+      elasticsearch-transport (= 7.8.1)
+    elasticsearch-api (7.8.1)
+      multi_json
+    elasticsearch-transport (7.8.1)
+      faraday (~> 1)
+      multi_json
+    elasticsearch-xpack (7.8.1)
+      elasticsearch-api (>= 6)
+    faraday (1.0.1)
+      multipart-post (>= 1.2, < 3)
+    minitest (5.14.1)
+    multi_json (1.15.0)
+    multipart-post (2.1.1)
+    rake (12.3.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  byebug
+  logtastic!
+  minitest (~> 5.0)
+  rake (~> 12.0)
+
+BUNDLED WITH
+   2.1.4
