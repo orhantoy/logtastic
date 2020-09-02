@@ -21,8 +21,18 @@ class LogtasticTest < Minitest::Test
 
   def teardown
     Logtastic.client.indices.delete(index: "logtastic-*")
-    Logtastic.client.indices.delete_template(name: "logtastic")
-    Logtastic.client.xpack.ilm.delete_policy(policy_id: "logtastic")
+
+    begin
+      Logtastic.client.indices.delete_template(name: "logtastic")
+    rescue Elasticsearch::Transport::Transport::Errors::NotFound
+      # Continue
+    end
+
+    begin
+      Logtastic.client.xpack.ilm.delete_policy(policy_id: "logtastic")
+    rescue Elasticsearch::Transport::Transport::Errors::NotFound
+      # Continue
+    end
   end
 
   def test_that_it_has_a_version_number
