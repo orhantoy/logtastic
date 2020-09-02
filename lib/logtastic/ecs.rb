@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "logtastic/event"
 require "logtastic/setup"
 
 module Logtastic
@@ -17,12 +18,14 @@ module Logtastic
       @setup.perform!
     end
 
-    def write(event)
-      Logtastic.write(@output, index: write_index(event), body: event)
+    def write(event_hash)
+      event = Event.new(event_hash)
+      Logtastic.write(@output, index: write_index(event), body: event.body)
     end
 
-    def write_now(event)
-      @elasticsearch.index(index: write_index(event), body: event)
+    def write_now(event_hash)
+      event = Event.new(event_hash)
+      @elasticsearch.index(index: write_index(event), body: event.body)
     end
 
     def search(**args)
@@ -43,9 +46,11 @@ module Logtastic
 
     private
 
-    def write_index(_event)
+    def write_index(event)
       if @index.nil?
         @setup.rollover_alias
+      elsif @index.respond_to?(:call)
+        @index.call(event)
       else
         @index
       end
