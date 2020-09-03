@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Orhan Toy"]
   spec.email         = ["toyorhan@gmail.com"]
 
-  spec.summary       = "Logtastic"
-  spec.description   = "Logtastic"
+  spec.summary       = "Log directly to Elasticsearch, inspired by Filebeat"
+  spec.description   = "Logtastic provides a flexible and simple way for you to index your custom application log/data into Elasticsearch"
   spec.homepage      = "https://github.com/orhantoy/logtastic"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
